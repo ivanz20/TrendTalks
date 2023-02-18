@@ -16,5 +16,9 @@ const CommentSchema = mongoose.Schema({
     comment_likes: {
         type: Number,
         required: true
+    },
+    comment_photo: {
+        type: String,
+        required: true
     }
 })

@@ -1,15 +1,15 @@
 const { Router } = require('express');
 const bcrypt = require('bcrypt');
 const userSchema = require("../models/UserSchema");
+var promise = require("promise");
 
 const router = Router();
  
 //Create User
 router.post('/users', (req, res) => {   
+    
     const user = userSchema(req.body);
  
-
-
     //Validaciones
 
     //Nombre
@@ -33,20 +33,7 @@ router.post('/users', (req, res) => {
     }
 
     //Username
-    if((/^[A-Za-z0-9]*$/.test(user.username))){
-
-        userSchema.count({username: user.username})
-        .then((count)=>{
-            if(count > 0){
-                return res.status(400).json({
-                    ok: false,
-                    err:{
-                        message: "El usuario ya existe."
-                    }
-                })
-            }
-        })        
-    }else{
+    if(!(/^[A-Za-z0-9]*$/.test(user.username))){    
         return res.status(400).json({
             ok: false,
             err:{
@@ -69,10 +56,49 @@ router.post('/users', (req, res) => {
     }
 
 
-    user.save()
-    .then((data)=>res.json(data))
-    .catch((error)=>res.json({message: error}))
-})
+    
+    userSchema.findOne({username: user.username},(erro, data) => {
+        if(erro){
+            return res.status(500).json({
+                ok: false,
+                err: erro
+            })
+        }
+        if(!data){
+            userSchema.findOne({email: user.email},(erro, data2) => {
+                if(erro){
+                    return res.status(500).json({
+                        ok: false,
+                        err: erro
+                    })
+                }
+                if(!data2){
+                    user.save()
+                    .then((data2)=>res.json(data2))
+                    .catch((error)=>res.json({message: error}))
+                }
+                else{
+                    return res.status(400).json({
+                        ok: false,
+                        err:{
+                            message: "El email ya esta registrado."
+                        }
+                    })
+                }
+            });
+               
+        }
+        else{
+            return res.status(400).json({
+                ok: false,
+                err:{
+                    message: "El usuario ya existe."
+                }
+            })
+        }
+    });
+    
+});
 
 //Get Users
 router.get("/users",(req,res) =>{

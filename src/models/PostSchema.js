@@ -1,42 +1,40 @@
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
-    name: {
+const PostSchema = mongoose.Schema({
+    username: {
         type: String,
         required: true
     },
-    lastname: {
-        type:String,
-        required: true
-    },
-    email: {
-        type:String,
-        required: true
-    },
-    username:{
+    post_content: {
         type: String,
         required: true
     },
-    password:{
+    post_date: {
         type: String,
         required: true
     },
-    birthday:{
-        type: Date,
-        required: true
-    },
-    shortalks:{
+    hashs:{
         type: String,
         required: true
     },
-    isShortTalkUpload:{
-        type: Boolean,
+    likes:{
+        type: Number,
         required: true
     },
-    profile_pic: {
+    comments:{
+        type: Number,
+        required: true
+    },
+    photo_post:{
+        type: String,
+        required: true
+    },
+    video_post: {
+        type: String,
+        required: true
+    },
+    user_profilepic: {
         type: String,
         required: true
     }
-});
-
-module.exports = mongoose.model('User', userSchema);
+})

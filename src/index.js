@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 require("dotenv").config()
 const userRoutes = require('./routes/user') 
 const PostRoutes = require('./routes/post')
+const NotificationRoutes = require('./routes/notification')
 
 const app = express();
 const port = process.env.PORT || 3001
@@ -12,6 +13,7 @@ const port = process.env.PORT || 3001
 app.use(express.json());
 app.use('/api',userRoutes);
 app.use('/api',PostRoutes);
+app.use('/api',NotificationRoutes);
 
 
 //Routes

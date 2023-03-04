@@ -27,15 +27,15 @@ const userSchema = mongoose.Schema({
     },
     shortalks:{
         type: String,
-        required: true
+        required: false
     },
     isShortTalkUpload:{
         type: Boolean,
-        required: true
+        required: false
     },
     profile_pic: {
         type: String,
-        required: true
+        required: false
     }
 });
 

@@ -1,5 +1,5 @@
 # TrendTalks
-social network page project with nodejs and reactjs
+Social Network backend with Nodejs and MongoDB.
 
 
 

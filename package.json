@@ -10,6 +10,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bin" : {
+    "execute" : "index.js"
+  } 
   "dependencies": {
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",

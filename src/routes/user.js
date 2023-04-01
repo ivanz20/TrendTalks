@@ -5,15 +5,15 @@ var promise = require("promise");
 
 const router = Router();
  
-//Create User
-router.post('/users', (req, res) => {   
-    
-    const user = userSchema(req.body);
- 
-    //Validaciones
 
+//Create User
+router.post('/users', (req, res) => {
+
+    const user = userSchema(req.body);
+    //Validaciones
     //Nombre
     if(!(/^[A-Za-z\s]*$/.test(user.name))){
+        console.log("El nombre estamal")
         return res.status(400).json({
             ok: false,
             err:{
@@ -24,6 +24,7 @@ router.post('/users', (req, res) => {
 
     //Apellidos
     if(!(/^[A-Za-z\s]*$/.test(user.lastname))){
+        console.log("El apellido esta mal")
         return res.status(400).json({
             ok: false,
             err:{
@@ -33,7 +34,8 @@ router.post('/users', (req, res) => {
     }
 
     //Username
-    if(!(/^[A-Za-z0-9]*$/.test(user.username))){    
+    if(!(/^[A-Za-z0-9]*$/.test(user.username))){  
+        console.log("El usuario esta mal")  
         return res.status(400).json({
             ok: false,
             err:{
@@ -44,6 +46,7 @@ router.post('/users', (req, res) => {
 
     //Password
     if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(user.password))){
+        console.log("La password esta mal")
         return res.status(400).json({
             ok: false,
             err:{
@@ -56,7 +59,6 @@ router.post('/users', (req, res) => {
     }
 
 
-    
     userSchema.findOne({username: user.username},(erro, data) => {
         if(erro){
             return res.status(500).json({
@@ -78,6 +80,7 @@ router.post('/users', (req, res) => {
                     .catch((error)=>res.json({message: error}))
                 }
                 else{
+                    console.log("El email ya esta registrado")
                     return res.status(400).json({
                         ok: false,
                         err:{
@@ -89,6 +92,7 @@ router.post('/users', (req, res) => {
                
         }
         else{
+            console.log("El usuario ya existe")
             return res.status(400).json({
                 ok: false,
                 err:{
@@ -99,6 +103,7 @@ router.post('/users', (req, res) => {
     });
     
 });
+
 
 //Get Users
 router.get("/users",(req,res) =>{

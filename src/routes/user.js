@@ -167,7 +167,17 @@ router.post("/users/login",(req,res) => {
 //Update User
 router.put("/users/:id",(req,res) => {
     const {id} = req.params;
-    const {name,lastname,password,birthday,shortalks,isShortTalkUpload} = req.body;
+    const {name,lastname,password,birthday} = req.body;
+    userSchema
+    .updateOne({_id: id},{ $set: {name,lastname,password,birthday} })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({message: error}))
+})
+
+//Update User
+router.put("/users/uploadshort/:id",(req,res) => {
+    const {id} = req.params;
+    const {shortalks,isShortTalkUpload} = req.body;
     userSchema
     .updateOne({_id: id},{ $set: {name,lastname,password,birthday,shortalks,isShortTalkUpload} })
     .then((data) => res.json(data))

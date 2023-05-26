@@ -5,6 +5,7 @@ const userRoutes = require('./routes/user')
 const PostRoutes = require('./routes/post')
 const NotificationRoutes = require('./routes/notification')
 const FollowRoutes = require('./routes/follow_routes')
+const CategoryRoutes = require('./routes/category_routes.js')
 
 const app = express();
 const port = process.env.PORT || 3001
@@ -16,6 +17,7 @@ app.use('/api',userRoutes);
 app.use('/api',PostRoutes);
 app.use('/api',NotificationRoutes);
 app.use('/api',FollowRoutes);
+app.use('/api',CategoryRoutes);
 
 app.use(function(req, res, next) {
   // res.header("Access-Control-Allow-Origin", "*");

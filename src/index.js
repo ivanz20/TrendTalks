@@ -6,7 +6,7 @@ const PostRoutes = require('./routes/post')
 const NotificationRoutes = require('./routes/notification')
 const FollowRoutes = require('./routes/follow_routes')
 const CategoryRoutes = require('./routes/category_routes.js')
-
+var cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3001
 

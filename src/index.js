@@ -20,19 +20,20 @@ app.use('/api',NotificationRoutes);
 app.use('/api',FollowRoutes);
 app.use('/api',CategoryRoutes);
 
-
-
 //Routes
 app.get('/',(req,res)=>{
     res.send("Welcome to my API")
 })
 
-
 //mongodb connection
+mongoose.connect('mongodb://localhost:27017/Zapato', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    family: 4,
+})
+    .then(() => console.log('Conexión exitosa a la base de datos'))
+    .catch(err => console.error(err));
 
-mongoose.connect(process.env.MONGODB_URI)
-.then(()=>console.log('Connected to MongoDB Atlas'))
-.catch((error) => console.log(error));
 
 
 app.listen(port,() => console.log('Server listening on port: ', port))

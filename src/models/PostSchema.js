@@ -31,11 +31,11 @@ const PostSchema = mongoose.Schema({
     },
     photo_post:{
         type: String,
-        required: true
+        required: false
     },
     video_post: {
         type: String,
-        required: true
+        required: false
     },
     user_profilepic: {
         type: String,

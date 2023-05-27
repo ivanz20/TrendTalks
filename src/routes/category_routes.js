@@ -36,7 +36,7 @@ router.post("/categories/filtro",(req,res) => {
             })
         }
 
-    })
+    }).sort({post_date:-1})
 })
 
 module.exports = router;

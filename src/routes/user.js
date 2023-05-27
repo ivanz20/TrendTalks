@@ -13,7 +13,7 @@ router.post('/users', (req, res) => {
     //Validaciones
     //Nombre
     if(!(/^[A-Za-z\s]*$/.test(user.name))){
-        console.log("El nombre estamal")
+        console.log("El nombre esta mal")
         return res.status(400).json({
             ok: false,
             err:{
@@ -179,7 +179,7 @@ router.put("/users/uploadshort/:id",(req,res) => {
     const {id} = req.params;
     const {shortalks,isShortTalkUpload} = req.body;
     userSchema
-    .updateOne({_id: id},{ $set: {name,lastname,password,birthday,shortalks,isShortTalkUpload} })
+    .updateOne({_id: id},{ $set: {shortalks,isShortTalkUpload} })
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}))
 })

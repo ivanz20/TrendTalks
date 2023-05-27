@@ -18,8 +18,7 @@ router.post('/talkie', (req, res) => {
 
 //Get Posts
 router.get('/talkie', async (req, res) => {
-    const data = await PostSchema.find()
-    console.log("xdxxd")
+    const data = await PostSchema.find().sort({post_date:-1})
     return res.status(200).json({ posts: data });
 
     //  console.log(data)

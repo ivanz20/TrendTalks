@@ -122,6 +122,16 @@ router.get("/users/:id",(req,res) => {
     .catch((error) => res.json({message: error}))
 })
 
+//Get User By username
+router.get("/users/perfil/:username",(req,res) => {
+    const {username} = req.params;
+    console.log(req.params)
+    userSchema
+    .find({username: username})
+    .then((data) => res.json(data))
+    .catch((error) => res.json({message: error}))
+})
+
 //User Login
 router.post("/users/login",(req,res) => {
    

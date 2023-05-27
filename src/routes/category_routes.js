@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const CategorySchema = require("../models/CategoriesSchema");
-
+const PostSchema = require("../models/PostSchema.js")
 
 const router = Router();
 
@@ -16,15 +16,9 @@ router.get("/categories",(req,res) =>{
 
 router.post("/categories/filtro",(req,res) => {
     let body = req.body;
-    CategorySchema
-    .findOne({categoria: body.categoria}, (erro, postcategoria) => {
-
-        if(error){
-            return res.status(400).json({
-                ok: false,
-                err: erro
-            })
-        }
+    PostSchema.findOne({category: body.categoria}, (erro, postcategoria) => {
+        console.log(postcategoria)
+    
 
         if(!postcategoria){
             return res.status(400).json({

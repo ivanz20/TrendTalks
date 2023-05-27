@@ -69,15 +69,6 @@ router.get("/talkie/post/:id", (req, res) => {
         .catch((error) => res.json({ message: error }))
 })
 
-//Update Post
-router.put("/talkie/:id", (req, res) => {
-    const { id } = req.params;
-    const { post_content, hashs, likes, comments, photo_post, video_post } = req.body;
-    PostSchema
-        .updateOne({ _id: id }, { $set: { post_content, hashs, likes, comments, photo_post, video_post, category } })
-        .then((data) => res.json(data))
-        .catch((error) => res.json(error))
-})
 
 
 //Delete Post

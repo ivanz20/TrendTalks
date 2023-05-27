@@ -174,7 +174,7 @@ router.put("/users/:id",(req,res) => {
     .catch((error) => res.json({message: error}))
 })
 
-//Update User
+//Update User Short
 router.put("/users/uploadshort/:id",(req,res) => {
     const {id} = req.params;
     const {shortalks,isShortTalkUpload} = req.body;

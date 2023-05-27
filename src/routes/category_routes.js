@@ -14,29 +14,11 @@ router.get("/categories",(req,res) =>{
 });
 
 
-router.post("/categories/filtro",(req,res) => {
+router.post("/categories/filtro",async(req,res) => {
     let body = req.body;
-    PostSchema.findOne({category: body.categoria}, (erro, postcategoria) => {
-        console.log(postcategoria)
-    
-
-        if(!postcategoria){
-            return res.status(400).json({
-                ok: false,
-                err:{
-                    message: "No hay post de esta categoria."
-                }
-            })
-        }
-
-        if(postcategoria){
-            return res.json({
-                ok: true,
-                postscategorias: postcategoria
-            })
-        }
-
-    }).sort({post_date:-1})
+    const data = await PostSchema.find({category: body.categoria}).sort({post_date:-1});
+    console.log(data)
+    return res.status(200).json({posts: data});
 })
 
 module.exports = router;

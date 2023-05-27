@@ -21,15 +21,6 @@ router.get('/talkie', async (req, res) => {
     const data = await PostSchema.find().sort({post_date:-1})
     return res.status(200).json({ posts: data });
 
-    //  console.log(data)
-
-    //        .then((data
-
-    //          ) => res.json(data))
-    //     .catch((err) => {
-    //        console.error(err);
-    //       res.status(500).json({ error: err });
-    //  });
 })
 
 //Get Post by Username
